@@ -144,7 +144,7 @@ function App() {
                 View work
               </a>
               <a
-                href="/path-to-your-cv.pdf"
+                href="/aishwarya-kalburgi-resume-cv.pdf"
                 download
                 className="flex items-center gap-2 border border-white/20 px-6 py-3 rounded-full font-medium hover:bg-white/10 transition"
               >
