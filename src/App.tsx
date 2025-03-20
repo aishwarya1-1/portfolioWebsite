@@ -369,7 +369,7 @@ function App() {
             {[
               {
                 title: "Ice Cream POS Billing Application",
-                description: "The application manages billing, orders, sales tracking, employee management,analytic dashboard and coupon handling. The system features a user-friendly interface, robust backend processing, and insightful sales analytics, empowering business owners to make informed decisions.",
+                description: "Designed and developed a complete Point of Sale system for an ice cream shop that is currently in production use by a local business.The application manages billing, orders, sales tracking, employee management,analytic dashboard and coupon handling. The system features a user-friendly interface, robust backend processing, and insightful sales analytics, empowering business owners to make informed decisions.",
                 image: "https://i.ibb.co/ynGqrL8H/FotoJet.jpg",
                 url: "https://github.com/aishwarya1-1/IgluPOS/blob/main/README.md",
                 tags: ["Next.js", "MySQL", "Tailwind", "Prisma"]
