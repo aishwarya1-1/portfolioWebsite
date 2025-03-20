@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, ExternalLink, ArrowUpRight, Download } from 'lucide-react';
+import { Github, Linkedin, Mail, ExternalLink, ArrowUpRight, Download, Menu, X } from 'lucide-react';
 
 function App() {
   const [selectedJob, setSelectedJob] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const jobs = [
     {
@@ -31,10 +32,8 @@ function App() {
       period: "Dec. 2021 - April. 2022",
       logo: "https://media.licdn.com/dms/image/v2/C4E0BAQE9p2EG5ghtDA/company-logo_200_200/company-logo_200_200/0/1631357517588?e=1750291200&v=beta&t=OpyibG9kK1WMvVP-bmOYAxpkZOTTiwkU7ksGyNCc5d8",
       responsibilities: [
-
         "Developed a Python-based SNMP query utility for network management and packaged it as a standalone app with PyInstaller.",
         "Replaced the file-based approach with an API-based approach when directing information to ESP(Event Stream Processing), a component of Assure1",
-
         "Exposure to concepts such as the Go programming language and Microservices, as well as network technologies like Assure1"
       ]
     },
@@ -84,14 +83,12 @@ function App() {
     { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
     { name: "Java", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
     { name: "MySQL", icon: "https://www.svgrepo.com/show/303251/mysql-logo.svg" },
-
     { name: "TailwindCSS", icon: "https://www.svgrepo.com/show/374118/tailwind.svg" },
     { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
     { name: "NextJS", icon: "https://www.hacksoft.io/_next/image?url=https%3A%2F%2Fwww.datocms-assets.com%2F98835%2F1684410508-image-7.png&w=640&q=75" },
     { name: "Flask", icon: "https://media2.dev.to/dynamic/image/width=1600,height=900,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fhjieh24f0kpcwfi9eiau.jpg" },
     { name: "OOP", icon: "https://thumbs.dreamstime.com/z/object-oriented-programming-icon-trendy-modern-flat-linear-vect-vector-white-background-thin-line-technology-collection-130960480.jpg?ct=jpeg" },
     { name: "Data Structures and Algorithm", icon: "https://play-lh.googleusercontent.com/9zvNJHedNg_6lOdwcodODMVsyeHKxuTIpnbBzomRGGZAp_vKVXnd5SlF8XZcXyGYjQ=s96-rw" },
-
   ];
 
   const itTools = [
@@ -100,16 +97,29 @@ function App() {
     { name: "ELK", icon: "https://www.edureka.co/blog/wp-content/uploads/2017/11/ELK.png" },
     { name: "Git", icon: "https://cdn-icons-png.flaticon.com/128/15466/15466163.png" },
     { name: "HCM", icon: "https://store-images.s-microsoft.com/image/apps.29509.3e0a99fc-a17d-4dab-8ccc-42809cdaa4f4.80a4d011-a7bf-4b1b-ab0c-47fae161af9b.b64d5b93-4ca6-4d70-90a6-546ddc4d6d12" },
-
   ];
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
       {/* Navigation */}
       <nav className="fixed w-full z-50 bg-[#0a0a0a]/80 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <a href="#" className="text-2xl font-bold">Aishwarya Kalburgi.</a>
-          <div className="flex items-center gap-6">
+          <a href="#" className="text-xl sm:text-2xl font-bold">Aishwarya Kalburgi.</a>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden text-white focus:outline-none"
+            onClick={toggleMenu}
+          >
+            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-6">
             <a href="#experience" className="hover:text-gray-300 transition">Experience</a>
             <a href="#education" className="hover:text-gray-300 transition">Education</a>
             <a href="#work" className="hover:text-gray-300 transition">Work</a>
@@ -117,6 +127,49 @@ function App() {
             <a href="#contact" className="hover:text-gray-300 transition">Contact</a>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <div className="md:hidden bg-[#1a1a1a] px-4 py-6 animate-fadeIn">
+            <div className="flex flex-col space-y-4">
+              <a
+                href="#experience"
+                className="hover:text-gray-300 transition"
+                onClick={() => setMenuOpen(false)}
+              >
+                Experience
+              </a>
+              <a
+                href="#education"
+                className="hover:text-gray-300 transition"
+                onClick={() => setMenuOpen(false)}
+              >
+                Education
+              </a>
+              <a
+                href="#work"
+                className="hover:text-gray-300 transition"
+                onClick={() => setMenuOpen(false)}
+              >
+                Work
+              </a>
+              <a
+                href="#skills"
+                className="hover:text-gray-300 transition"
+                onClick={() => setMenuOpen(false)}
+              >
+                Skills
+              </a>
+              <a
+                href="#contact"
+                className="hover:text-gray-300 transition"
+                onClick={() => setMenuOpen(false)}
+              >
+                Contact
+              </a>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* Hero Section */}
@@ -128,27 +181,27 @@ function App() {
             transition={{ duration: 0.8 }}
             className="space-y-6"
           >
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight">
               Software Developer<br />
               AI Enthusiast, <br />
               Building Full-Stack Solutions.
             </h1>
-            <p className="text-gray-400 max-w-2xl text-lg">
+            <p className="text-gray-400 max-w-2xl text-base sm:text-lg">
               I have 7+ years of experience across multiple domains, including Automation,Cloud Technologies and Full Stack Development.Now expanding into Data Science and AI, I enjoy solving real-world problems.One key principle I adopted from my previous company is Customer Obsession, which deeply resonates with me.I am eager to learn, grow, and contribute to the business success of the company I work for.
             </p>
-            <div className="flex gap-4">
-              <a href="#contact" className="bg-white text-black px-6 py-3 rounded-full font-medium hover:bg-gray-200 transition">
+            <div className="flex flex-wrap gap-4">
+              <a href="#contact" className="bg-white text-black px-4 sm:px-6 py-3 rounded-full font-medium hover:bg-gray-200 transition text-sm sm:text-base">
                 Get in touch
               </a>
-              <a href="#work" className="border border-white/20 px-6 py-3 rounded-full font-medium hover:bg-white/10 transition">
+              <a href="#work" className="border border-white/20 px-4 sm:px-6 py-3 rounded-full font-medium hover:bg-white/10 transition text-sm sm:text-base">
                 View work
               </a>
               <a
                 href="/aishwarya-kalburgi-resume-cv.pdf"
                 download
-                className="flex items-center gap-2 border border-white/20 px-6 py-3 rounded-full font-medium hover:bg-white/10 transition"
+                className="flex items-center gap-2 border border-white/20 px-4 sm:px-6 py-3 rounded-full font-medium hover:bg-white/10 transition text-sm sm:text-base"
               >
-                <Download size={18} />
+                <Download size={16} className="sm:w-[18px] sm:h-[18px]" />
                 Download CV
               </a>
             </div>
@@ -157,18 +210,18 @@ function App() {
       </section>
 
       {/* Work Experience Section */}
-      <section id="experience" className="py-20 px-4 bg-[#0a0a0a]">
+      <section id="experience" className="py-16 sm:py-20 px-4 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="space-y-16"
+            className="space-y-12 sm:space-y-16"
           >
-            <h2 className="text-5xl md:text-6xl font-bold text-center mb-16">Work Experience</h2>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-center mb-12 sm:mb-16">Work Experience</h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+              <div className="space-y-4 order-2 md:order-1">
                 {jobs.map((job, index) => (
                   <motion.div
                     key={index}
@@ -185,11 +238,11 @@ function App() {
                       <img
                         src={job.logo}
                         alt={job.company}
-                        className="w-12 h-12 rounded-full object-cover"
+                        className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover"
                       />
                       <div>
-                        <h3 className="font-semibold">{job.title}</h3>
-                        <p className="text-sm text-gray-400">{job.company}</p>
+                        <h3 className="font-semibold text-sm sm:text-base">{job.title}</h3>
+                        <p className="text-xs sm:text-sm text-gray-400">{job.company}</p>
                       </div>
                     </div>
                   </motion.div>
@@ -200,22 +253,22 @@ function App() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                className="md:col-span-2 bg-[#1a1a1a] p-8 rounded-xl"
+                className="md:col-span-2 bg-[#1a1a1a] p-4 sm:p-8 rounded-xl order-1 md:order-2"
               >
-                <h3 className="text-2xl font-bold mb-2">{jobs[selectedJob].title}</h3>
-                <p className="text-gray-400 mb-6">{jobs[selectedJob].company}</p>
-                <p className="text-sm text-gray-400 mb-6">{jobs[selectedJob].period}</p>
-                <ul className="space-y-4">
+                <h3 className="text-xl sm:text-2xl font-bold mb-2">{jobs[selectedJob].title}</h3>
+                <p className="text-gray-400 mb-4 sm:mb-6">{jobs[selectedJob].company}</p>
+                <p className="text-xs sm:text-sm text-gray-400 mb-4 sm:mb-6">{jobs[selectedJob].period}</p>
+                <ul className="space-y-3 sm:space-y-4">
                   {jobs[selectedJob].responsibilities.map((responsibility, index) => (
                     <motion.li
                       key={index}
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="flex items-start gap-3"
+                      className="flex items-start gap-2 sm:gap-3"
                     >
                       <span className="w-2 h-2 mt-2 rounded-full bg-blue-500 flex-shrink-0" />
-                      <span className="text-gray-300">{responsibility}</span>
+                      <span className="text-gray-300 text-sm sm:text-base">{responsibility}</span>
                     </motion.li>
                   ))}
                 </ul>
@@ -226,10 +279,43 @@ function App() {
       </section>
 
       {/* Education Section */}
-      <section id="education" className="py-20 px-4">
+      <section id="education" className="py-16 sm:py-20 px-4">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-5xl md:text-6xl font-bold text-center mb-16">Education</h2>
-          <div className="relative">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-center mb-12 sm:mb-16">Education</h2>
+
+          {/* Mobile Education Layout */}
+          <div className="md:hidden space-y-8">
+            {education.map((edu, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="bg-[#1a1a1a] p-6 rounded-xl"
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <img
+                    src={edu.logo}
+                    alt={edu.school}
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover"
+                  />
+                  <div>
+                    <h3 className="font-bold text-lg sm:text-xl">{edu.degree}</h3>
+                    <p className="text-gray-400 text-sm">{edu.school}</p>
+                  </div>
+                </div>
+                <p className="text-xs sm:text-sm text-purple-400 mb-2">{edu.period}</p>
+                <ul className="list-disc list-inside space-y-1 text-sm sm:text-base text-gray-300">
+                  {edu.description.split("\n").map((line, i) => (
+                    <li key={i}>{line.trim()}</li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Desktop Timeline Layout */}
+          <div className="relative hidden md:block">
             {/* Timeline Line */}
             <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-white/10" />
 
@@ -261,13 +347,11 @@ function App() {
                         </div>
                       </div>
                       <p className="text-sm text-purple-400 mb-2">{edu.period}</p>
-                      <p className="text-gray-300">
-                        <ul className="list-disc list-inside space-y-1">
-                          {edu.description.split("\n").map((line, i) => (
-                            <li key={i}>{line.trim()}</li>
-                          ))}
-                        </ul>
-                      </p>
+                      <ul className="list-disc list-inside space-y-1 text-gray-300">
+                        {edu.description.split("\n").map((line, i) => (
+                          <li key={i}>{line.trim()}</li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
                 </motion.div>
@@ -278,10 +362,10 @@ function App() {
       </section>
 
       {/* Work Section */}
-      <section id="work" className="py-20 px-4">
+      <section id="work" className="py-16 sm:py-20 px-4">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold mb-12">Selected Work</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12">Selected Work</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {[
               {
                 title: "Ice Cream POS Billing Application",
@@ -303,7 +387,6 @@ function App() {
                 image: "https://i.ibb.co/RptTCtqN/Screenshot-2025-03-15-at-1-17-02-PM.png",
                 url: "https://highlights7k.streamlit.app/",
                 tags: ["Python", "Mailchimp", "Langchain", "crewAI", "gitHub actions"]
-
               },
               {
                 title: "News Researcher Agent",
@@ -324,17 +407,17 @@ function App() {
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-48 object-cover"
+                  className="w-full h-44 sm:h-48 object-cover"
                 />
-                <div className="p-6">
-                  <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-bold">{project.title}</h3>
+                <div className="p-4 sm:p-6">
+                  <div className="flex justify-between items-start mb-3 sm:mb-4">
+                    <h3 className="text-lg sm:text-xl font-bold">{project.title}</h3>
                     <ArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
-                  <p className="text-gray-400 mb-4">{project.description}</p>
+                  <p className="text-gray-400 mb-3 sm:mb-4 text-sm sm:text-base">{project.description}</p>
                   <div className="flex gap-2 flex-wrap">
                     {project.tags.map((tag, tagIndex) => (
-                      <span key={tagIndex} className="text-sm px-3 py-1 bg-white/10 rounded-full">
+                      <span key={tagIndex} className="text-xs sm:text-sm px-2 sm:px-3 py-1 bg-white/10 rounded-full">
                         {tag}
                       </span>
                     ))}
@@ -347,12 +430,13 @@ function App() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 px-4 bg-[#0a0a0a]">
+      <section id="skills" className="py-16 sm:py-20 px-4 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12 sm:mb-16">
             <p className="text-purple-500 mb-4 font-mono">&lt;TECHNICAL PROFICIENCIES&gt;</p>
-            <h2 className="text-5xl md:text-6xl font-bold mb-8">Skills.</h2>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 sm:mb-8">Skills.</h2>
           </div>
+
 
           <div className="space-y-20">
             {/* Programming Skills */}
@@ -379,7 +463,6 @@ function App() {
               </div>
               <p className="text-purple-500 mt-8 font-mono text-xl text-right">&lt;/programming&gt;</p>
             </div>
-
             {/* IT Tools */}
             <div>
               <p className="text-purple-500 mb-8 font-mono text-xl">&lt;itTools&gt;</p>
@@ -505,3 +588,9 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
